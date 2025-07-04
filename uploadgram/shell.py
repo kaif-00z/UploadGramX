@@ -57,7 +57,7 @@ async def upload(
 async def moin(
     args
 ):
-    uploadgram = Uploadgram()
+    uploadgram = Uploadgram(args.token)
     await uploadgram.start()
 
     dest_chat = args.chat_id
@@ -166,6 +166,16 @@ def main():
         default=None,
         required=False
     )
+    parser.add_argument(
+        "--token",
+        nargs="?",
+        type=str,
+        help="Bot Token Via Command",
+        default=None,
+        required=False
+    )
+
+
     args = parser.parse_args()
     loop = asyncio.get_event_loop()
     loop.run_until_complete(moin(args))
